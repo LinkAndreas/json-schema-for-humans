@@ -282,22 +282,22 @@ def _resolve_ref(
     found_reference = resolved_references[referenced_schema_path].get(anchor_part)
     reference_users[referenced_schema_path][anchor_part].append(current_node)
 
-    if found_reference and found_reference != current_node:
-        if config.link_to_reused_ref:
-            return _find_ref(
-                found_reference,
-                referenced_schema_path,
-                reference_users,
-                resolved_references,
-                anchor_part,
-                current_node,
-            )
-        else:
-            if _has_recursive_reference(reference_users, current_node) or _has_reference_to_parent(
-                referenced_schema_path, anchor_part, current_node
-            ):
-                current_node.is_displayed = False
-                return found_reference, found_reference
+    # if found_reference and found_reference != current_node:
+    #     if config.link_to_reused_ref:
+    #         return _find_ref(
+    #             found_reference,
+    #             referenced_schema_path,
+    #             reference_users,
+    #             resolved_references,
+    #             anchor_part,
+    #             current_node,
+    #         )
+    #     else:
+    #         if _has_recursive_reference(reference_users, current_node) or _has_reference_to_parent(
+    #             referenced_schema_path, anchor_part, current_node
+    #         ):
+    #             current_node.is_displayed = False
+    #             return found_reference, found_reference
 
     # Not an existing reference, so it shall be built
     referenced_schema_path_to_element = anchor_part.split("/")
